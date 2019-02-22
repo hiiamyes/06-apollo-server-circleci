@@ -17,7 +17,11 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: yarn run build
-      - run: ssh-keyscan $LINODE_IP >> ~/.ssh/known_hosts
-      # - run: ssh yes@$LINODE_IP "rm -rf /srv/packaging/build/"
-      # - run: scp -r build/ yes@$LINODE_IP:/srv/packaging/build/
+      - run: |
+        ssh-keyscan $LINODE_IP >> ~/.ssh/known_hosts
+        ssh yes@$LINODE_IP <<'ENDSSH'
+        mkdir -p /srv/practices
+        cd /src/practices
+        git -C 06-apollo-server-circleci pull || git clone git@github.com:hiiamyes/06-apollo-server-circleci.git && cd 06-apollo-server-circleci/
+        yarn start
+        ENDSSH
