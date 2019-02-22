@@ -20,8 +20,8 @@ jobs:
       - run: |
           ssh-keyscan $LINODE_IP >> ~/.ssh/known_hosts
           ssh yes@$LINODE_IP <<'ENDSSH'
-          mkdir -p /srv/practices
-          cd /src/practices
+          mkdir -p /srv/practices/
+          cd /src/practices/
           git -C 06-apollo-server-circleci pull || git clone git@github.com:hiiamyes/06-apollo-server-circleci.git && cd 06-apollo-server-circleci/
           yarn start
           ENDSSH
