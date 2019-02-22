@@ -25,7 +25,7 @@ jobs:
           # sudo mkdir -p /srv/practices/
           # cd /src/practices/
           # sudo git -C 06-apollo-server-circleci pull || sudo git clone https://github.com/hiiamyes/06-apollo-server-circleci.git && cd 06-apollo-server-circleci/
-          cd /src/practices/06-apollo-server-circleci/
+          cd /srv/practices/06-apollo-server-circleci/
           sudo git pull
           yarn start
           ENDSSH
