@@ -19,9 +19,11 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: |
           ssh-keyscan $LINODE_IP >> ~/.ssh/known_hosts
-          ssh -t yes@$LINODE_IP <<'ENDSSH'
-          sudo mkdir -p /srv/practices/
-          cd /src/practices/
-          sudo git -C 06-apollo-server-circleci pull || sudo git clone https://github.com/hiiamyes/06-apollo-server-circleci.git && cd 06-apollo-server-circleci/
+          ssh yes@$LINODE_IP <<'ENDSSH'
+          # sudo mkdir -p /srv/practices/
+          # cd /src/practices/
+          # sudo git -C 06-apollo-server-circleci pull || sudo git clone https://github.com/hiiamyes/06-apollo-server-circleci.git && cd 06-apollo-server-circleci/
+          cd /src/practices/06-apollo-server-circleci/
+          git pull
           yarn start
           ENDSSH
